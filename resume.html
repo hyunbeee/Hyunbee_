@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이력서 - Kang HyuBi</title>
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* 전체적인 색감: 검은색과 다크그린 */
+            --bg-color: #e9e8e3; /* 첨부 이미지 느낌의 텍스처 배경색 */
+            --dark-green: #0a4027; /* 제목 및 선에 들어갈 다크 그린 */
+            --text-black: #111111; /* 본문 텍스트 검은색 */
+            --line-color: #799484; /* 경계선 다크 그린 (약간 부드럽게) */
+        }
+
+        body {
+            margin: 0;
+            padding: 50px 20px;
+            background-color: var(--bg-color);
+            color: var(--text-black);
+            font-family: 'Pretendard', sans-serif;
+            display: flex;
+            justify-content: center;
+        }
+
+        .resume-container {
+            width: 100%;
+            max-width: 900px;
+            background-color: transparent;
+        }
+
+        /* --- Header Section --- */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            padding-bottom: 20px;
+            border-bottom: 1.5px solid var(--line-color);
+            margin-bottom: 30px;
+        }
+
+        .name {
+            font-family: 'Playfair Display', serif;
+            font-size: 7rem;
+            font-weight: 900;
+            color: var(--dark-green);
+            margin: 0;
+            line-height: 0.9;
+            letter-spacing: -3px;
+        }
+
+        .job-title {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            font-size: 1.1rem;
+            color: var(--dark-green);
+            font-weight: 700;
+            letter-spacing: 5px;
+            padding-bottom: 10px;
+        }
+
+        /* --- About Section --- */
+        .about-section {
+            display: grid;
+            grid-template-columns: 1fr 2.5fr;
+            gap: 30px;
+            padding-bottom: 30px;
+            border-bottom: 1.5px solid var(--line-color);
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--dark-green);
+            margin: 0;
+            font-weight: 900;
+            letter-spacing: -1px;
+        }
+
+        .about-text {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: var(--dark-green); /* 이미지 느낌을 살려 다크그린 적용 */
+            font-weight: 500;
+        }
+
+        /* --- Main Layout (2 Columns) --- */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .left-column {
+            border-right: 1.5px solid var(--line-color);
+            padding-right: 40px;
+        }
+
+        .sub-section {
+            margin-bottom: 50px;
+        }
+
+        .sub-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: var(--dark-green);
+            margin: 0 0 20px 0;
+            font-weight: 900;
+            letter-spacing: -1px;
+            line-height: 1.2;
+        }
+
+        /* --- Left Column Items --- */
+        .info-group {
+            margin-bottom: 25px;
+        }
+
+        .info-title {
+            font-size: 1rem;
+            color: var(--dark-green);
+            font-weight: 600;
+            margin: 0 0 5px 0;
+        }
+
+        .info-desc {
+            font-size: 0.95rem;
+            color: var(--text-black);
+            margin: 0 0 3px 0;
+        }
+
+        .info-date {
+            font-size: 0.85rem;
+            color: var(--dark-green);
+            margin: 0;
+        }
+
+        .list-clean {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .list-clean li {
+            font-size: 1rem;
+            color: var(--text-black);
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        /* --- Right Column Items --- */
+        .exp-item {
+            margin-bottom: 30px;
+        }
+
+        .exp-title {
+            font-size: 1.1rem;
+            color: var(--text-black);
+            font-weight: 700;
+            margin: 0 0 5px 0;
+        }
+
+        .exp-role {
+            font-size: 0.95rem;
+            color: var(--dark-green);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .exp-detail {
+            font-size: 0.95rem;
+            color: var(--text-black);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* --- Technical Skills (Circle Design) --- */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .tech-circle {
+            width: 60px;
+            height: 60px;
+            background-color: var(--dark-green);
+            color: var(--bg-color);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .tech-labels {
+            font-size: 0.95rem;
+            color: var(--text-black);
+            line-height: 1.6;
+            margin-top: 15px;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .about-section { grid-template-columns: 1fr; }
+            .main-content { grid-template-columns: 1fr; gap: 0; }
+            .left-column { border-right: none; padding-right: 0; border-bottom: 1.5px solid var(--line-color); margin-bottom: 40px; padding-bottom: 10px; }
+            .name { font-size: 4.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="resume-container">
+        
+        <header class="header">
+            <h1 class="name">Kang HyunBi</h1>
+            <div class="job-title">AI SERVICE ENGINEER</div>
+        </header>
+
+        <section class="about-section">
+            <h2 class="section-title">About.</h2>
+            <div class="about-text">
+                데이터 전처리와 분석 등 탄탄한 기본기부터 최신 LLM, RAG 구조 설계, 다중 에이전트 시스템까지 폭넓은 AI 기술 스택을 활용하여 실제 가치를 창출하는 엔지니어입니다. OO대학교 전공과 Microsoft AI School을 거치며 컴퓨터 비전, 자연어 처리, 웹 서비스 구현을 아우르는 다수의 프로젝트를 완수했습니다. 특히, 사용자와 깊이 있게 상호작용하는 멘탈 헬스케어 에이전트와 캐릭터 중심의 회화 게임을 개발하며, 기술의 한계를 넘어선 매력적인 서비스 경험을 기획하는 데 성과를 냈습니다.
+            </div>
+        </section>
+
+        <div class="main-content">
+            
+            <div class="left-column">
+                <div class="sub-section">
+                    <h2 class="sub-title">Education.</h2>
+                    <div class="info-group">
+                        <h3 class="info-title">OO대학교</h3>
+                        <p class="info-desc">OO학과 졸업</p>
+                        <p class="info-date">2019.03 - 2024.02</p>
+                    </div>
+                </div>
+
+                <div class="sub-section">
+                    <h2 class="sub-title">Certificates.</h2>
+                    <ul class="list-clean">
+                        <li>ADsP (데이터분석 준전문가)</li>
+                        <li>AI 900 (Microsoft)</li>
+                        <li>상공회의소 한자 8급</li>
+                    </ul>
+                </div>
+
+                <div class="sub-section">
+                    <h2 class="sub-title">Contact.</h2>
+                    <ul class="list-clean">
+                        <li>OOO@naver.com</li>
+                        <li>010-XXXX-XXXX</li>
+                        <li>서울특별시 OO구 OO로</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="right-column">
+                <div class="sub-section">
+                    <h2 class="sub-title">Working <br>Experience.</h2>
+                    
+                    <div class="exp-item">
+                        <h3 class="exp-title">리서치 회사 인턴</h3>
+                        <div class="exp-role">사무직 (2024.01 - 2024.03)</div>
+                        <p class="exp-detail">
+                            비R&D 과제 관련 검수 및 행정 지원 업무, 내외부 커뮤니케이션 조율, 문서 작성 및 데이터 정리 표준화 작업 수행.
+                        </p>
+                    </div>
+
+                    <div class="exp-item">
+                        <h3 class="exp-title">Microsoft AI School</h3>
+                        <div class="exp-role">AI 모델링 및 웹 서비스 개발 프로젝트</div>
+                        <p class="exp-detail">
+                            - 반려동물 행동 분석 앱 실시간 모델 구현<br>
+                            - GPT API 및 STT/TTS 연동 실전 회화 학습 게임 기획<br>
+                            - 다중 Agent 협업 구조 기반 멘탈 헬스케어 서비스 설계
+                        </p>
+                    </div>
+
+                    <div class="exp-item">
+                        <h3 class="exp-title">데이터 청년 캠퍼스</h3>
+                        <div class="exp-role">데이터 분석 프로젝트</div>
+                        <p class="exp-detail">
+                            개인별 맞춤형 달리기 경로 분석 및 크루 추천 서비스 기획 및 개발 참여.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="sub-section">
+                    <h2 class="sub-title">Technical <br>skills.</h2>
+                    <div class="tech-grid">
+                        <div class="tech-circle">Py</div>
+                        <div class="tech-circle">R</div>
+                        <div class="tech-circle">Js</div>
+                        <div class="tech-circle">Re</div>
+                        <div class="tech-circle">Az</div>
+                        <div class="tech-circle">Fm</div>
+                    </div>
+                    <div class="tech-labels">
+                        <strong>Programming:</strong> Python, R, JavaScript, React<br>
+                        <strong>Cloud & AI:</strong> Azure, RAG, GPT, YOLOv1<br>
+                        <strong>Tools:</strong> Figma, Excel, 한컴오피스
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
