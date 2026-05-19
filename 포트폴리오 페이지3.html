@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KANG HYUN BEE - AI Project Portfolio</title>
+    <style>
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+        :root {
+            --bg-color: #0a0a0a;
+            --main-green: #1a5c43;
+            --light-green: #4ade80;
+            --text-color: #e5e5e5;
+            --font-main: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+            --border-light: 1px solid rgba(74, 222, 128, 0.2);
+            --border-hover: 1px solid var(--light-green);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 100vh;
+            background-color: var(--main-green);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .eyes-container {
+            display: flex;
+            gap: 0px;
+            z-index: 3;
+            margin-bottom: 2vh;
+        }
+
+        .eye {
+            width: 14vw;
+            height: 18vw;
+            min-width: 120px;
+            min-height: 150px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .eye:nth-child(1) { z-index: 2; margin-right: -2vw; }
+        .eye:nth-child(2) { z-index: 1; }
+
+        .pupil {
+            width: 6vw;
+            height: 6vw;
+            min-width: 50px;
+            min-height: 50px;
+            background-color: var(--main-green);
+            border-radius: 50%;
+            position: absolute;
+            transition: transform 0.1s ease-out;
+        }
+
+        .pupil::after {
+            content: '';
+            position: absolute;
+            top: 15%;
+            right: 15%;
+            width: 25%;
+            height: 25%;
+            background-color: white;
+            border-radius: 50%;
+        }
+
+        .hero-title {
+            position: absolute;
+            font-size: 18vw;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.1);
+            letter-spacing: -0.05em;
+            text-transform: lowercase;
+            z-index: 2;
+            top: 50%;
+            transform: translateY(-50%);
+            white-space: nowrap;
+        }
+
+        .hero-name {
+            font-size: 3vw;
+            min-font-size: 24px;
+            font-weight: 800;
+            color: white;
+            z-index: 4;
+            margin-top: 10vh;
+            letter-spacing: 0.2em;
+        }
+
+        /* --- Marquee --- */
+        .marquee-wrapper {
+            border-top: 1px solid var(--main-green);
+            border-bottom: 1px solid var(--main-green);
+            background-color: rgba(26, 92, 67, 0.2);
+            overflow: hidden;
+            padding: 20px 0;
+            display: flex;
+            white-space: nowrap;
+        }
+
+        .marquee {
+            font-size: 1.2rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: var(--light-green);
+            display: flex;
+            animation: marquee-scroll 20s linear infinite;
+        }
+
+        .marquee span {
+            margin: 0 40px;
+            letter-spacing: 2px;
+        }
+
+        @keyframes marquee-scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* --- Container & Typography --- */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 100px 5vw;
+        }
+
+        .section-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--light-green);
+            margin-bottom: 50px;
+            text-transform: lowercase;
+            border-bottom: 1px solid rgba(74, 222, 128, 0.3);
+            padding-bottom: 20px;
+        }
+
+        /* --- Bento Grid --- */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 25px;
+            margin-bottom: 120px;
+        }
+
+        .bento-item {
+            background-color: rgba(255, 255, 255, 0.03);
+            border: var(--border-light);
+            border-radius: 0;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            transition: transform 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+        }
+
+        .bento-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--light-green);
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .bento-title {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--light-green);
+            margin-bottom: 25px;
+            text-transform: lowercase;
+            letter-spacing: 1px;
+        }
+
+        .item-intro { grid-column: span 8; }
+        .item-profile { grid-column: span 4; }
+        .item-skills { grid-column: span 12; }
+        .item-timeline { grid-column: span 6; }
+        .item-contact { grid-column: span 6; }
+
+        .intro-text { font-size: 1.1rem; font-weight: 300; line-height: 1.8; color: #ccc; }
+        
+        .skill-tags { display: flex; flex-wrap: wrap; gap: 12px; }
+        .skill-tag {
+            border: 1px solid var(--main-green);
+            padding: 8px 18px;
+            border-radius: 50px;
+            font-weight: 400;
+            font-size: 0.95rem;
+            color: #ccc;
+            transition: all 0.3s ease;
+        }
+        .bento-item:hover .skill-tag {
+            border-color: var(--light-green);
+            color: var(--light-green);
+        }
+
+        .timeline-list { list-style: none; padding: 0; margin: 0; }
+        .timeline-list li { margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .timeline-list li:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .t-date { font-weight: 300; font-size: 0.85rem; color: var(--light-green); letter-spacing: 1px; margin-bottom: 5px; }
+        .t-desc { font-weight: 400; font-size: 1.05rem; color: #e5e5e5; }
+
+        /* --- Projects Grid --- */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-bottom: 120px;
+        }
+
+        .project-card {
+            background-color: transparent;
+            border: var(--border-light);
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            border-color: var(--light-green);
+            background-color: rgba(26, 92, 67, 0.05);
+        }
+
+        .project-card h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0 0 15px 0;
+            color: white;
+        }
+
+        .p-tech {
+            font-weight: 300;
+            color: var(--light-green);
+            margin-bottom: 25px;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+        }
+
+        .p-details {
+            margin: 0;
+            padding-left: 20px;
+            font-weight: 300;
+            font-size: 1rem;
+            color: #bbb;
+            line-height: 1.7;
+        }
+
+        .p-details li { margin-bottom: 10px; }
+
+        /* --- Gallery Section --- */
+        .gallery-wrap { margin-bottom: 80px; }
+        .gallery-category {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--text-color);
+            margin: 60px 0 30px 0;
+            text-transform: lowercase;
+            letter-spacing: 1px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .gallery-item {
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .gallery-thumb {
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            border: var(--border-light);
+            overflow: hidden;
+            position: relative;
+            background-color: #111;
+            margin-bottom: 20px;
+            transition: border-color 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-thumb {
+            border-color: var(--light-green);
+        }
+
+        .gallery-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+            opacity: 0.8;
+        }
+
+        .gallery-item:hover .gallery-thumb img {
+            transform: scale(1.05);
+            opacity: 1;
+        }
+
+        .badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            border: 1px solid var(--light-green);
+            background: rgba(10, 10, 10, 0.8);
+            color: var(--light-green);
+            padding: 6px 12px;
+            font-weight: 400;
+            font-size: 0.75rem;
+            z-index: 2;
+            letter-spacing: 1px;
+        }
+
+        .gallery-item h4 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin: 0 0 8px 0;
+            color: white;
+        }
+
+        .gallery-item p {
+            margin: 0;
+            font-weight: 300;
+            color: #888;
+            font-size: 0.95rem;
+        }
+
+        /* --- Modal --- */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            align-items: center; justify-content: center;
+        }
+
+        .modal-content {
+            position: relative;
+            background-color: #111;
+            width: 90%; max-width: 1000px;
+            border: 1px solid var(--main-green);
+            overflow: hidden;
+        }
+
+        .modal-header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 20px 30px; background-color: #111;
+            border-bottom: 1px solid rgba(255,255,255,0.1); color: #fff;
+        }
+
+        .modal-header h3 { margin: 0; font-size: 1.1rem; font-weight: 700; }
+        .close-btn { font-size: 2rem; font-weight: 300; cursor: pointer; line-height: 1; transition: color 0.3s; color: #888; }
+        .close-btn:hover { color: var(--light-green); }
+        .modal-body { width: 100%; height: 70vh; display: flex; align-items: center; justify-content: center; background: #0a0a0a;}
+
+        /* --- Responsive --- */
+        @media (max-width: 992px) {
+            .item-intro { grid-column: span 12; }
+            .item-profile { grid-column: span 12; }
+            .item-timeline { grid-column: span 12; }
+            .item-contact { grid-column: span 12; }
+            .projects-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <div class="eyes-container">
+            <div class="eye"><div class="pupil" id="pupil-left"></div></div>
+            <div class="eye"><div class="pupil" id="pupil-right"></div></div>
+        </div>
+        <div class="hero-title">portfolio</div>
+        <div class="hero-name">KANG HYUN BEE</div>
+    </header>
+
+    <div class="marquee-wrapper">
+        <div class="marquee">
+            <span>DATA ANALYSIS</span>
+            <span>PORTFOLIO 2026</span>
+            <span>ADMINISTRATIVE SUPPORT</span>
+            <span>AI PROJECT</span>
+            <span>PROBLEM SOLVING</span>
+            <span>DATA ANALYSIS</span>
+            <span>PORTFOLIO 2026</span>
+            <span>ADMINISTRATIVE SUPPORT</span>
+            <span>AI PROJECT</span>
+            <span>PROBLEM SOLVING</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <section class="bento-grid">
+            <div class="bento-item item-intro">
+                <div class="bento-title">introduction</div>
+                <div class="intro-text">
+                    빠르게 변화하는 IT 환경에 대한 적응력과 문제 해결 중심의 사고를 바탕으로, 기술과 행정 업무를 유기적으로 연결합니다.<br><br>
+                    사무 행정 실무 경험과 Python, React, Azure 등의 IT 기술 역량을 결합하여 업무 효율을 높이고, 조직 내 원활한 협업을 지원하는 실질적인 성과를 만듭니다.
+                </div>
+            </div>
+
+            <div class="bento-item item-profile">
+                <div class="bento-title">profile</div>
+                <ul class="timeline-list">
+                    <li>
+                        <div class="t-date">NAME / AGE</div>
+                        <div class="t-desc">강현비 / 2000년생</div>
+                    </li>
+                    <li>
+                        <div class="t-date">CERTIFICATION</div>
+                        <div class="t-desc">AI 900<br>상공회의소 한자 8급<br>Adsp</div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="bento-item item-skills">
+                <div class="bento-title">tech skills & tools</div>
+                <div class="skill-tags">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">R</span>
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">HTML5 / CSS3</span>
+                    <span class="skill-tag">React</span>
+                    <span class="skill-tag">FastAPI</span>
+                    <span class="skill-tag">Microsoft Azure</span>
+                    <span class="skill-tag">MySQL</span>
+                    <span class="skill-tag">Figma</span>
+                    <span class="skill-tag">MS Office (Excel)</span>
+                    <span class="skill-tag">한컴오피스</span>
+                </div>
+            </div>
+
+            <div class="bento-item item-timeline">
+                <div class="bento-title">experience & education</div>
+                <ul class="timeline-list">
+                    <li>
+                        <div class="t-date">2024.12 - 2025.06</div>
+                        <div class="t-desc">Microsoft AI School 교육 이수</div>
+                    </li>
+                    <li>
+                        <div class="t-date">2024.01 - 2024.03</div>
+                        <div class="t-desc">리서치 회사 인턴</div>
+                    </li>
+                    <li>
+                        <div class="t-date">2019.03 - 2024.02</div>
+                        <div class="t-desc">OO대학교 OO학과 졸업</div>
+                    </li>
+                    <li>
+                        <div class="t-date">2021.06 - 2021.09</div>
+                        <div class="t-desc">데이터 청년 캠퍼스 교육 이수</div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="bento-item item-contact">
+                <div class="bento-title">contact</div>
+                <ul class="timeline-list">
+                    <li>
+                        <div class="t-date">PHONE</div>
+                        <div class="t-desc">010-****-5074</div>
+                    </li>
+                    <li>
+                        <div class="t-date">EMAIL</div>
+                        <div class="t-desc">gusql1128@naver.com<br>kanghyunbee51@gmail.com</div>
+                    </li>
+                    <li>
+                        <div class="t-date">ADDRESS</div>
+                        <div class="t-desc">서울 OOO OOOO</div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <h2 class="section-title">detailed projects</h2>
+        <section class="projects-grid">
+            <div class="project-card">
+                <h3>ROGUN</h3>
+                <div class="p-tech">Python, YOLOv1, ResNet-34, OpenCV, Streamlit</div>
+                <ul class="p-details">
+                    <li>반려동물 행동분석 홈캠 프로젝트 기획 및 개발</li>
+                    <li>반려견의 걷기, 앉기, 점프 등의 행동 감지 실시간 분석 모델 구현</li>
+                    <li>모델 정확도 88.68%에서 93.33%로 4.65%p 향상 달성</li>
+                    <li>YOLOv1 + ResNet-34 하이퍼파라미터 최적화(Optuna) 수행</li>
+                    <li>OpenCV 실시간 스트리밍 및 행동 변화 시 자동 녹화 기능 개발</li>
+                    <li>Streamlit 활용 웹 UI 구성 및 사용자 알림 시스템 설계</li>
+                </ul>
+            </div>
+
+            <div class="project-card">
+                <h3>TOLK & ROLE</h3>
+                <div class="p-tech">Unity, C#, OpenAI GPT API, Azure Speech(STT/TTS), FastAPI</div>
+                <ul class="p-details">
+                    <li>워킹홀리데이 및 해외 취업 대비 몰입형 영어 회화 RPG 게임 기획 및 개발</li>
+                    <li>GPT API 및 STT/TTS 연동으로 음성 인식 후 문법 및 발음 피드백 제공 시스템 구현</li>
+                    <li>퀘스트 기반 시나리오 기획 및 AI 대화 흐름 프롬프트 설계</li>
+                    <li>DALL-E 3 활용 배경 요소 이미지 생성 및 통일성 있는 게임 UI/UX 디자인 참여</li>
+                    <li>FastAPI를 활용한 데이터 요청 및 응답 아키텍처 설계</li>
+                </ul>
+            </div>
+
+            <div class="project-card">
+                <h3>FOM</h3>
+                <div class="p-tech">React, FastAPI, AutoGen, GPT-4, DALL-E, RAG, Azure, MySQL</div>
+                <ul class="p-details">
+                    <li>자아성찰을 돕는 멘탈 헬스케어 서비스 기획 및 구축</li>
+                    <li>GPT 기반 일기 상담 에이전트 개발을 통한 감정 분석 및 문장 익명화 자동화</li>
+                    <li>AutoGen 활용 다중 Agent 협업 구조 설계 및 테스트 구축</li>
+                    <li>DALL-E 3 감정 이미지 자동 생성 기반의 감정 공유 갤러리 기능 구현</li>
+                    <li>RAG 기반 심리상담 응답 구조 (CBT, ACT 등 근거 중심 이론 반영) 설계</li>
+                </ul>
+            </div>
+
+            <div class="project-card">
+                <h3>개인별 달리기 경로 추천 서비스</h3>
+                <div class="p-tech">Python, 데이터 전처리, 데이터 시각화</div>
+                <ul class="p-details">
+                    <li>지도 노드 데이터 수집, 전처리 및 좌표 변환을 통한 경로 분석 수행</li>
+                    <li>자연경관, CCTV, 관광명소 등 테마별 맞춤형 달리기 경로 추천 시스템 구현</li>
+                    <li>개인 맞춤 경로 추천 로직 개발</li>
+                    <li>지역 커뮤니티 매칭 기능 기획으로 서비스 만족도 및 참여도 향상 도모</li>
+                </ul>
+            </div>
+        </section>
+
+        <h2 class="section-title">contents gallery</h2>
+        <section class="gallery-wrap">
+            <div class="gallery-category">documents (pdf)</div>
+            <div class="gallery-grid">
+                <div class="gallery-item" onclick="openModal('pdf', '강현비_의료광고.pdf', '의료광고 기획안')">
+                    <div class="gallery-thumb">
+                        <span class="badge">PDF</span>
+                        <img src="성형포스터 썸네일.jpg" alt="의료광고 썸네일">
+                    </div>
+                    <h4>강현비_의료광고</h4>
+                    <p>의료광고 홍보물 기획</p>
+                </div>
+
+                <div class="gallery-item" onclick="openModal('pdf', 'AI_윤리_정책보고서.pdf', 'AI 윤리 정책보고서')">
+                    <div class="gallery-thumb">
+                        <span class="badge">PDF</span>
+                        <img src="정책보고서 썸네일.jpg" alt="정책보고서 썸네일">
+                    </div>
+                    <h4>AI_윤리_정책보고서</h4>
+                    <p>AI 생태계 조성 전략</p>
+                </div>
+
+                <div class="gallery-item" onclick="openModal('pdf', '강현비_수강생모집포스터.pdf', '수강생 모집 포스터')">
+                    <div class="gallery-thumb">
+                        <span class="badge">PDF</span>
+                        <img src="수강생 포스터.jpg" alt="수강생포스터 썸네일">
+                    </div>
+                    <h4>수강생모집포스터</h4>
+                    <p>문화 센터 수강생 모집</p>
+                </div>
+            </div>
+
+            <div class="gallery-category">presentations (slide)</div>
+            <div class="gallery-grid">
+                <div class="gallery-item" onclick="openModal('pdf', '강현비_AI PPT.pdf', 'AI 윤리 정책 발표 슬라이드')">
+                    <div class="gallery-thumb">
+                        <span class="badge">SLIDE</span>
+                        <img src="윤리PPT.jpg" alt="PPT 썸네일">
+                    </div>
+                    <h4>강현비_AI PPT</h4>
+                    <p>정책 및 실천 전략 발표자료</p>
+                </div>
+            </div>
+
+            <div class="gallery-category">video contents</div>
+            <div class="gallery-grid">
+                <div class="gallery-item" onclick="openModal('video', 'PENY_자막,나레이션 영상.mp4', '남극 펭귄 다큐멘터리')">
+                    <div class="gallery-thumb">
+                        <span class="badge">VIDEO</span>
+                        <img src="펭귄 썸네일.jpg" alt="펭귄 영상 썸네일">
+                    </div>
+                    <h4>자막, 나레이션 영상</h4>
+                    <p>다큐멘터리 편집 영상</p>
+                </div>
+
+                <div class="gallery-item" onclick="openModal('video', '강현비_로봇새.mp4', 'AI 로봇새 제너레이션 영상')">
+                    <div class="gallery-thumb">
+                        <span class="badge">VIDEO</span>
+                        <img src="차가운_금속으로_된_로봇_새_202605141525.jpeg" alt="로봇새 썸네일">
+                    </div>
+                    <h4>강현비_로봇새</h4>
+                    <p>AI 생성 애니메이션</p>
+                </div>
+
+                <div class="gallery-item" onclick="openModal('video', '강아지 떡볶이 먹방.mp4', '강아지 떡볶이 먹방 숏폼')">
+                    <div class="gallery-thumb">
+                        <span class="badge">VIDEO</span>
+                        <img src="Dachshund_eating_Tteokbokki_202605172334.jpeg_202605191422.jpeg" alt="강아지 먹방 썸네일">
+                    </div>
+                    <h4>강아지 떡볶이 먹방</h4>
+                    <p>크리에이티브 숏폼 콘텐츠</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="contentModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">콘텐츠 제목</h3>
+                <span class="close-btn" onclick="closeModal()">&times;</span>
+            </div>
+            <div class="modal-body" id="modal-body"></div>
+        </div>
+    </div>
+
+    <script>
+        // 1. 눈동자 마우스 트래킹 애니메이션
+        document.addEventListener('mousemove', (e) => {
+            const mouseX = e.clientX;
+            const mouseY = e.clientY;
+            const pupils = document.querySelectorAll('.pupil');
+            
+            pupils.forEach(pupil => {
+                const rect = pupil.parentElement.getBoundingClientRect();
+                const eyeCenterX = rect.left + rect.width / 2;
+                const eyeCenterY = rect.top + rect.height / 2;
+                
+                const angle = Math.atan2(mouseY - eyeCenterY, mouseX - eyeCenterX);
+                const distance = Math.min(rect.width * 0.25, Math.hypot(mouseX - eyeCenterX, mouseY - eyeCenterY) / 10);
+                
+                const x = Math.cos(angle) * distance;
+                const y = Math.sin(angle) * distance;
+                
+                pupil.style.transform = `translate(${x}px, ${y}px)`;
+            });
+        });
+
+        // 2. 모달 기능
+        const modalOverlay = document.getElementById('contentModal');
+        const modalBody = document.getElementById('modal-body');
+        const modalTitle = document.getElementById('modal-title');
+
+        function openModal(type, src, title) {
+            const encodedSrc = encodeURI(src);
+
+            if (type === 'pdf') {
+                window.open(encodedSrc, '_blank', 'width=1000,height=800,menubar=no,toolbar=no');
+            } else if (type === 'video') {
+                modalTitle.textContent = title;
+                modalOverlay.style.display = 'flex';
+                
+                modalBody.innerHTML = `
+                    <video controls autoplay style="width: 100%; height: 100%; background: #0a0a0a; outline: none;">
+                        <source src="${encodedSrc}" type="video/mp4">
+                        브라우저가 동영상을 지원하지 않습니다.
+                    </video>
+                `;
+            }
+        }
+
+        function closeModal() {
+            modalOverlay.style.display = 'none';
+            modalBody.innerHTML = ''; 
+        }
+
+        window.onclick = function(event) {
+            if (event.target === modalOverlay) closeModal();
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape") closeModal();
+        });
+    </script>
+</body>
+</html>
